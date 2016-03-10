@@ -32,15 +32,34 @@ public class Service1 {
 	@Path("/upload")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
-			 @FormDataParam("file") InputStream fileInputStream,
-			 @FormDataParam("file") FormDataContentDisposition contentDispositionHeader){
-		String filePath = SERVER_UPLOAD_LOCATION_FOLDER + contentDispositionHeader.getFileName();
-		        // save the file to the server
-		        saveFile(fileInputStream, filePath);
-		 
-		        String output = "File saved to server location : " + filePath;
-		        return Response.status(200).entity(output).build();
+			 @FormDataParam("file0") InputStream productFileInputStream,
+			 @FormDataParam("file0") FormDataContentDisposition productHeader,
+			 @FormDataParam("file1") InputStream warrantyFileInputStream,
+			 @FormDataParam("file1") FormDataContentDisposition warrantyHeader,
+			 @FormDataParam("product") String productName,
+			 @FormDataParam("purchasedate") String purchaseDate,
+			 @FormDataParam("warrantyperiod") String warrantyPeriod,
+			 @FormDataParam("note") String note){
+		String productFilePath;
+		String warrantyFilePath;
+		if(null!=productFileInputStream){
+			productFilePath = SERVER_UPLOAD_LOCATION_FOLDER+System.currentTimeMillis()
+					+ productHeader.getFileName();
+			// save the file to the server
+			saveFile(productFileInputStream, productFilePath);
+		}	
+		if(null!=warrantyFileInputStream){
+			warrantyFilePath=SERVER_UPLOAD_LOCATION_FOLDER+System.currentTimeMillis()
+					+ warrantyHeader.getFileName();
+			saveFile(warrantyFileInputStream, warrantyFilePath);
+		}
+		System.out.println("ProdcutName:- " + productName);
+		System.out.println(purchaseDate);
+		System.out.println(warrantyPeriod);
+		System.out.println(note);
 
+		String output = "Data Uploaded : ";
+		return Response.status(200).entity(output).build();
 		
 	}
 	

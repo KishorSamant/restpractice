@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">      
+		<title>VehicleDetails</title>  
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/collectuserdata.css" rel="stylesheet">
+		
+		<link rel="icon" href="../images/Background.jpg">
+		<link rel="stylesheet" type="text/css" href="../css/style6.css" />
+		<script src="../js/modernizr.custom.63321.js"></script>
+		
+    </head>
+	<body>
+		<div class="container">
+  		<h2>Vehicle Details</h2>
+		<ul class="nav nav-tabs">
+		    <li><a href="product.html">Product</a></li>
+		    <li class="active"><a href="vehicle.html">Vehicle</a></li>    
+  		</ul>
+		<form role="form">
+			<div class="fleft">
+				<select id="warrantyperiod" class="cd-select" name="warrantyperiod" >
+					<option value="-1" selected>Choose warranty period</option>
+				  <option value="6">6 Months</option>
+				  <option value="12">1 Year</option>
+				  <option value="18">1 Year 6 Months</option>
+				  <option value="24">2 Year</option>
+				  <option value="30">2 Year 6 Months</option>
+				  <option value="36">3 Year</option>
+				  <option value="42">3 Year 6 Months</option>
+				  <option value="48">4 Year</option>
+				  <option value="54">4 Year 6 Months</option>
+				  <option value="60">5 Year</option>
+				</select>
+			</div>
+		</form>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="../js/bootstrap.min.js"></script>	
+		<script type="text/javascript" src="../js/jquery.dropdown.js"></script>
+		<script type="text/javascript">
+			
+			$( function() {
+				
+				$( '#warrantyperiod' ).dropdown( {
+					gutter : 5,
+					stack : false,
+					delay : 100,
+					slidingIn : 100
+				} );
+
+			});
+
+		</script>
+	</body>
+</html>

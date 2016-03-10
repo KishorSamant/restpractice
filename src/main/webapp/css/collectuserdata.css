@@ -1,0 +1,14 @@
+body {
+    background: url(../images/Background.jpg) left top no-repeat, url(../images/Background.jpg) right bottom no-repeat;
+    background-size: 50px, 130px, auto;
+}
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+form {
+  max-width: 1000px;
+  padding: 15px;
+  margin: 0 auto;
+}

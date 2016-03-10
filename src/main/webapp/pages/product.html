@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">      
+		<title>ProductDetails</title>  
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/collectuserdata.css" rel="stylesheet">
+		
+		<link rel="icon" href="../images/Background.jpg">
+		
+    </head>
+    <body >
+        <div>
+            <datalist id="products">
+                <option value="TV">
+                <option value="Fridge">
+                <option value="Washing Machine">
+                <option value="Mobile">
+                <option value="Laptop">
+            </datalist>
+        </div>
+		<div class="container">
+  		<h2>Product Details</h2>
+		<ul class="nav nav-tabs">
+		    <li class="active"><a href="Product.html">Product</a></li>
+		    <li><a href="vehicle.html">Vehicle</a></li>    
+  		</ul>
+  
+        <!--<form role="form" action="http://localhost:8080/restpractice/rest/hello/upload" method="post" enctype="multipart/form-data">-->
+		<form role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="product">Product:</label>
+                <input list="products" class="form-control" name="product" id="product" placeholder="Enter product name">                
+            </div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="purchasedate">Purchase Date :</label>
+				<input type="date" class="form-control" name="purchasedate" id="purchasedate">
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="warrantyperiod">Warranty Period :</label>
+				<select class="form-control" name="warrantyperiod" id="warrantyperiod">
+				  <option value="6">6 Months</option>
+				  <option value="12">1 Year</option>
+				  <option value="18">1 Year 6 Months</option>
+				  <option value="24">2 Year</option>
+				  <option value="30">2 Year 6 Months</option>
+				  <option value="36">3 Year</option>
+				  <option value="42">3 Year 6 Months</option>
+				  <option value="48">4 Year</option>
+				  <option value="54">4 Year 6 Months</option>
+				  <option value="60">5 Year</option>
+				</select>
+			</div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="file">Product Image :</label>
+                <input type="file"  class="form-control" name="productFile" id= "productFile"  />
+                
+            </div>
+			<div class="form-group">
+                <label class="control-label col-sm-2" for="warrantyFile">Warranty card Image :</label>
+                <input type="file"  class="form-control" name="warrantyFile" id= "warrantyFile"  />
+                
+            </div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="note">Note :</label>
+				<input type="text"  class="form-control" name="note" id= "note"  placeholder="Additional Note If Any.."/>				
+			</div>
+			
+            <button type="button" id="btnSubmit" class="btn btn-default">Submit</button>
+           
+        </form>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="../js/bootstrap.min.js"></script>
+		    		
+		<script type="text/javascript">
+			$(document).ready(function(){
+			
+				
+			    $("#btnSubmit").click(function(){
+					var fd = new FormData();
+				    var product_file_data = $('#productFile')[0].files; // for multiple files
+				    for(var i = 0;i<product_file_data.length;i++){
+				        fd.append("file0", product_file_data[i]);
+				    }
+					var warranty_file_data = $('#warrantyFile')[0].files;
+					for(var i = 0;i<warranty_file_data.length;i++){
+				        fd.append("file1", warranty_file_data[i]);
+				    }
+					
+				    var other_data = $('form').serializeArray();
+				    $.each(other_data,function(key,input){
+				        fd.append(input.name,input.value);
+				    });
+			        $.ajax({
+			            type: "POST",
+						data: fd,
+			            contentType: false,
+						processData: false,
+						url:  "http://localhost:8080/restpractice/rest/hello/upload",
+			            success: function(data1) {
+			                console.log("response:" + data1);
+							alert(data1);
+							window.location.reload(true);
+							
+			            },
+			            error: function(jqXHR, textStatus, errorThrown) {
+			                console.log(' Error in processing!');
+			
+			            }
+			        });
+			     });
+			
+			});
+		</script>
+	</body>
+</html>
